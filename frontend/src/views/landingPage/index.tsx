@@ -5,6 +5,8 @@ import { Badge } from "@/components/ui/badge"
 import { ArrowRight, Zap, Shield, BarChart3, Cpu, GitBranch, Monitor, Users, CheckCircle, Star } from "lucide-react"
 
 import { motion } from "framer-motion"
+import Header from "./components/Header"
+import Footer from "./components/Footer"
 
 // Animation variants
 const fadeInUp = {
@@ -57,50 +59,7 @@ export default function LandingPage() {
     return (
         <div className="flex flex-col min-h-screen bg-white">
             {/* Header */}
-            <motion.header
-                className="px-4 lg:px-6 h-16 flex items-center border-b border-gray-200 bg-white/80 backdrop-blur-md fixed w-full z-50"
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-            >
-                <div className="container mx-auto flex justify-between items-center">
-                    <motion.div
-                        className="flex items-center space-x-2"
-                        whileHover={{ scale: 1.05 }}
-                        transition={{ type: "spring", stiffness: 300 }}
-                    >
-                        <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
-                            <Cpu className="h-5 w-5 text-white" />
-                        </div>
-                        <span className="text-xl font-bold text-black">LLMOps</span>
-                    </motion.div>
-                    <nav className="hidden md:flex items-center space-x-8">
-                        <motion.div whileHover={{ y: -2 }} transition={{ type: "spring", stiffness: 300 }}>
-                            <a href="#features" className="text-gray-600 hover:text-black transition-colors">
-                                Features
-                            </a>
-                        </motion.div>
-                        <motion.div whileHover={{ y: -2 }} transition={{ type: "spring", stiffness: 300 }}>
-                            <a href="#pricing" className="text-gray-600 hover:text-black transition-colors">
-                                Pricing
-                            </a>
-                        </motion.div>
-                        <motion.div whileHover={{ y: -2 }} transition={{ type: "spring", stiffness: 300 }}>
-                            <a href="#docs" className="text-gray-600 hover:text-black transition-colors">
-                                Docs
-                            </a>
-                        </motion.div>
-                        <motion.div {...scaleOnHover}>
-                            <Button variant="outline" className="border-gray-300">
-                                Sign In
-                            </Button>
-                        </motion.div>
-                        <motion.div {...scaleOnHover}>
-                            <Button className="bg-black hover:bg-gray-800">Get Started</Button>
-                        </motion.div>
-                    </nav>
-                </div>
-            </motion.header>
+            <Header />
 
             <main className="flex-1 pt-16">
                 {/* Hero Section */}
@@ -604,134 +563,7 @@ export default function LandingPage() {
             </main>
 
             {/* Footer */}
-            <motion.footer
-                className="bg-black text-white py-12"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
-            >
-                <div className="container mx-auto px-4">
-                    <motion.div
-                        className="grid md:grid-cols-4 gap-8"
-                        variants={staggerContainer}
-                        initial="initial"
-                        whileInView="animate"
-                        viewport={{ once: true }}
-                    >
-                        <motion.div variants={staggerItem}>
-                            <motion.div className="flex items-center space-x-2 mb-4" whileHover={{ scale: 1.05 }}>
-                                <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
-                                    <Cpu className="h-5 w-5 text-black" />
-                                </div>
-                                <span className="text-xl font-bold">LLMOps</span>
-                            </motion.div>
-                            <p className="text-gray-400">The complete platform for LLM operations and deployment.</p>
-                        </motion.div>
-                        <motion.div variants={staggerItem}>
-                            <h3 className="font-semibold mb-4">Product</h3>
-                            <ul className="space-y-2 text-gray-400">
-                                <motion.li whileHover={{ x: 4 }}>
-                                    <a href="#" className="hover:text-white transition-colors">
-                                        Features
-                                    </a>
-                                </motion.li>
-                                <motion.li whileHover={{ x: 4 }}>
-                                    <a href="#" className="hover:text-white transition-colors">
-                                        Pricing
-                                    </a>
-                                </motion.li>
-                                <motion.li whileHover={{ x: 4 }}>
-                                    <a href="#" className="hover:text-white transition-colors">
-                                        Security
-                                    </a>
-                                </motion.li>
-                                <motion.li whileHover={{ x: 4 }}>
-                                    <a href="#" className="hover:text-white transition-colors">
-                                        Enterprise
-                                    </a>
-                                </motion.li>
-                            </ul>
-                        </motion.div>
-                        <motion.div variants={staggerItem}>
-                            <h3 className="font-semibold mb-4">Resources</h3>
-                            <ul className="space-y-2 text-gray-400">
-                                <motion.li whileHover={{ x: 4 }}>
-                                    <a href="#" className="hover:text-white transition-colors">
-                                        Documentation
-                                    </a>
-                                </motion.li>
-                                <motion.li whileHover={{ x: 4 }}>
-                                    <a href="#" className="hover:text-white transition-colors">
-                                        API Reference
-                                    </a>
-                                </motion.li>
-                                <motion.li whileHover={{ x: 4 }}>
-                                    <a href="#" className="hover:text-white transition-colors">
-                                        Tutorials
-                                    </a>
-                                </motion.li>
-                                <motion.li whileHover={{ x: 4 }}>
-                                    <a href="#" className="hover:text-white transition-colors">
-                                        Blog
-                                    </a>
-                                </motion.li>
-                            </ul>
-                        </motion.div>
-                        <motion.div variants={staggerItem}>
-                            <h3 className="font-semibold mb-4">Company</h3>
-                            <ul className="space-y-2 text-gray-400">
-                                <motion.li whileHover={{ x: 4 }}>
-                                    <a href="#" className="hover:text-white transition-colors">
-                                        About
-                                    </a>
-                                </motion.li>
-                                <motion.li whileHover={{ x: 4 }}>
-                                    <a href="#" className="hover:text-white transition-colors">
-                                        Careers
-                                    </a>
-                                </motion.li>
-                                <motion.li whileHover={{ x: 4 }}>
-                                    <a href="#" className="hover:text-white transition-colors">
-                                        Contact
-                                    </a>
-                                </motion.li>
-                                <motion.li whileHover={{ x: 4 }}>
-                                    <a href="#" className="hover:text-white transition-colors">
-                                        Support
-                                    </a>
-                                </motion.li>
-                            </ul>
-                        </motion.div>
-                    </motion.div>
-                    <motion.div
-                        className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.4 }}
-                        viewport={{ once: true }}
-                    >
-                        <p className="text-gray-400">© 2024 LLMOps. All rights reserved.</p>
-                        <div className="flex space-x-6 mt-4 md:mt-0">
-                            <motion.div whileHover={{ y: -2 }}>
-                                <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                                    Privacy
-                                </a>
-                            </motion.div>
-                            <motion.div whileHover={{ y: -2 }}>
-                                <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                                    Terms
-                                </a>
-                            </motion.div>
-                            <motion.div whileHover={{ y: -2 }}>
-                                <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                                    Cookies
-                                </a>
-                            </motion.div>
-                        </div>
-                    </motion.div>
-                </div>
-            </motion.footer>
+            <Footer />
         </div>
     )
 }
