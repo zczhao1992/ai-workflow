@@ -41,7 +41,7 @@ export default function Header() {
                         Sign In
                     </Button>
 
-                    <Button className="bg-black hover:bg-gray-800" onClick={() => navigate({ to: '/' })}>Get Started</Button>
+                    <Button className="bg-black hover:bg-gray-800" onClick={() => navigate({ to: '/apps' })}>Get Started</Button>
                 </nav>
             </div>
         </motion.header>
