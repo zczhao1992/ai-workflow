@@ -1,16 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-// import Dashboard from "@/views/dashboard";
-// import { RootLayout } from "@/components/layout/index"
+import LandingPage from "@/views/landingPage";
 
 export const Route = createFileRoute("/_authenticated/")({
-    component: () => {
-        return (
-            <>
-                {/* <RootLayout /> */}
-
-                {/* <Dashboard /> */}
-                213
-            </>
-        )
-    },
+    component: () => <LandingPage />,
 });
