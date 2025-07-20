@@ -1,0 +1,16 @@
+{
+    "multiLanguage": "多语言",
+    "light": "浅色",
+    "dark": "暗色",
+    "system": "系统默认",
+    "toggle-theme": "切换主题",
+    "dashboard": "仪表板",
+    "general": "通用功能",
+    "basictable": "基础表格",
+    "pages": "基础页面",
+    "auth": "登录注册页面",
+    "errors": "错误页面",
+    "other": "其他",
+    "settings": "设置",
+    "tasks": "任务"
+}

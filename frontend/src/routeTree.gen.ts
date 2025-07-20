@@ -10,115 +10,156 @@
 
 // Import Routes
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as AuthenticatedRouteImport } from './routes/_authenticated/route'
-import { Route as AuthenticatedIndexImport } from './routes/_authenticated/index'
-import { Route as AuthenticatedAppsIndexImport } from './routes/_authenticated/apps/index'
+import { Route as rootRoute } from "./routes/__root";
+import { Route as AuthenticatedRouteImport } from "./routes/_authenticated/route";
+import { Route as AuthenticatedIndexImport } from "./routes/_authenticated/index";
+import { Route as AuthenticatedWorkflowsIndexImport } from "./routes/_authenticated/workflows/index";
+import { Route as AuthenticatedHomeIndexImport } from "./routes/_authenticated/home/index";
+import { Route as AuthenticatedWorkflowsIdImport } from "./routes/_authenticated/workflows/$Id";
 
 // Create/Update Routes
 
 const AuthenticatedRouteRoute = AuthenticatedRouteImport.update({
-  id: '/_authenticated',
+  id: "/_authenticated",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const AuthenticatedIndexRoute = AuthenticatedIndexImport.update({
-  id: '/',
-  path: '/',
+  id: "/",
+  path: "/",
   getParentRoute: () => AuthenticatedRouteRoute,
-} as any)
+} as any);
 
-const AuthenticatedAppsIndexRoute = AuthenticatedAppsIndexImport.update({
-  id: '/apps/',
-  path: '/apps/',
+const AuthenticatedWorkflowsIndexRoute =
+  AuthenticatedWorkflowsIndexImport.update({
+    id: "/workflows/",
+    path: "/workflows/",
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any);
+
+const AuthenticatedHomeIndexRoute = AuthenticatedHomeIndexImport.update({
+  id: "/home/",
+  path: "/home/",
   getParentRoute: () => AuthenticatedRouteRoute,
-} as any)
+} as any);
+
+const AuthenticatedWorkflowsIdRoute = AuthenticatedWorkflowsIdImport.update({
+  id: "/workflows/$Id",
+  path: "/workflows/$Id",
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any);
 
 // Populate the FileRoutesByPath interface
 
-declare module '@tanstack/react-router' {
+declare module "@tanstack/react-router" {
   interface FileRoutesByPath {
-    '/_authenticated': {
-      id: '/_authenticated'
-      path: ''
-      fullPath: ''
-      preLoaderRoute: typeof AuthenticatedRouteImport
-      parentRoute: typeof rootRoute
-    }
-    '/_authenticated/': {
-      id: '/_authenticated/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof AuthenticatedIndexImport
-      parentRoute: typeof AuthenticatedRouteImport
-    }
-    '/_authenticated/apps/': {
-      id: '/_authenticated/apps/'
-      path: '/apps'
-      fullPath: '/apps'
-      preLoaderRoute: typeof AuthenticatedAppsIndexImport
-      parentRoute: typeof AuthenticatedRouteImport
-    }
+    "/_authenticated": {
+      id: "/_authenticated";
+      path: "";
+      fullPath: "";
+      preLoaderRoute: typeof AuthenticatedRouteImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/_authenticated/": {
+      id: "/_authenticated/";
+      path: "/";
+      fullPath: "/";
+      preLoaderRoute: typeof AuthenticatedIndexImport;
+      parentRoute: typeof AuthenticatedRouteImport;
+    };
+    "/_authenticated/workflows/$Id": {
+      id: "/_authenticated/workflows/$Id";
+      path: "/workflows/$Id";
+      fullPath: "/workflows/$Id";
+      preLoaderRoute: typeof AuthenticatedWorkflowsIdImport;
+      parentRoute: typeof AuthenticatedRouteImport;
+    };
+    "/_authenticated/home/": {
+      id: "/_authenticated/home/";
+      path: "/home";
+      fullPath: "/home";
+      preLoaderRoute: typeof AuthenticatedHomeIndexImport;
+      parentRoute: typeof AuthenticatedRouteImport;
+    };
+    "/_authenticated/workflows/": {
+      id: "/_authenticated/workflows/";
+      path: "/workflows";
+      fullPath: "/workflows";
+      preLoaderRoute: typeof AuthenticatedWorkflowsIndexImport;
+      parentRoute: typeof AuthenticatedRouteImport;
+    };
   }
 }
 
 // Create and export the route tree
 
 interface AuthenticatedRouteRouteChildren {
-  AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
-  AuthenticatedAppsIndexRoute: typeof AuthenticatedAppsIndexRoute
+  AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute;
+  AuthenticatedWorkflowsIdRoute: typeof AuthenticatedWorkflowsIdRoute;
+  AuthenticatedHomeIndexRoute: typeof AuthenticatedHomeIndexRoute;
+  AuthenticatedWorkflowsIndexRoute: typeof AuthenticatedWorkflowsIndexRoute;
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
-  AuthenticatedAppsIndexRoute: AuthenticatedAppsIndexRoute,
-}
+  AuthenticatedWorkflowsIdRoute: AuthenticatedWorkflowsIdRoute,
+  AuthenticatedHomeIndexRoute: AuthenticatedHomeIndexRoute,
+  AuthenticatedWorkflowsIndexRoute: AuthenticatedWorkflowsIndexRoute,
+};
 
 const AuthenticatedRouteRouteWithChildren =
-  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren);
 
 export interface FileRoutesByFullPath {
-  '': typeof AuthenticatedRouteRouteWithChildren
-  '/': typeof AuthenticatedIndexRoute
-  '/apps': typeof AuthenticatedAppsIndexRoute
+  "": typeof AuthenticatedRouteRouteWithChildren;
+  "/": typeof AuthenticatedIndexRoute;
+  "/workflows/$Id": typeof AuthenticatedWorkflowsIdRoute;
+  "/home": typeof AuthenticatedHomeIndexRoute;
+  "/workflows": typeof AuthenticatedWorkflowsIndexRoute;
 }
 
 export interface FileRoutesByTo {
-  '/': typeof AuthenticatedIndexRoute
-  '/apps': typeof AuthenticatedAppsIndexRoute
+  "/": typeof AuthenticatedIndexRoute;
+  "/workflows/$Id": typeof AuthenticatedWorkflowsIdRoute;
+  "/home": typeof AuthenticatedHomeIndexRoute;
+  "/workflows": typeof AuthenticatedWorkflowsIndexRoute;
 }
 
 export interface FileRoutesById {
-  __root__: typeof rootRoute
-  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
-  '/_authenticated/': typeof AuthenticatedIndexRoute
-  '/_authenticated/apps/': typeof AuthenticatedAppsIndexRoute
+  __root__: typeof rootRoute;
+  "/_authenticated": typeof AuthenticatedRouteRouteWithChildren;
+  "/_authenticated/": typeof AuthenticatedIndexRoute;
+  "/_authenticated/workflows/$Id": typeof AuthenticatedWorkflowsIdRoute;
+  "/_authenticated/home/": typeof AuthenticatedHomeIndexRoute;
+  "/_authenticated/workflows/": typeof AuthenticatedWorkflowsIndexRoute;
 }
 
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '' | '/' | '/apps'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/apps'
+  fileRoutesByFullPath: FileRoutesByFullPath;
+  fullPaths: "" | "/" | "/workflows/$Id" | "/home" | "/workflows";
+  fileRoutesByTo: FileRoutesByTo;
+  to: "/" | "/workflows/$Id" | "/home" | "/workflows";
   id:
-    | '__root__'
-    | '/_authenticated'
-    | '/_authenticated/'
-    | '/_authenticated/apps/'
-  fileRoutesById: FileRoutesById
+    | "__root__"
+    | "/_authenticated"
+    | "/_authenticated/"
+    | "/_authenticated/workflows/$Id"
+    | "/_authenticated/home/"
+    | "/_authenticated/workflows/";
+  fileRoutesById: FileRoutesById;
 }
 
 export interface RootRouteChildren {
-  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren;
 }
 
 const rootRouteChildren: RootRouteChildren = {
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
-}
+};
 
 export const routeTree = rootRoute
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+  ._addFileTypes<FileRouteTypes>();
 
 /* ROUTE_MANIFEST_START
 {
@@ -133,15 +174,25 @@ export const routeTree = rootRoute
       "filePath": "_authenticated/route.tsx",
       "children": [
         "/_authenticated/",
-        "/_authenticated/apps/"
+        "/_authenticated/workflows/$Id",
+        "/_authenticated/home/",
+        "/_authenticated/workflows/"
       ]
     },
     "/_authenticated/": {
       "filePath": "_authenticated/index.tsx",
       "parent": "/_authenticated"
     },
-    "/_authenticated/apps/": {
-      "filePath": "_authenticated/apps/index.tsx",
+    "/_authenticated/workflows/$Id": {
+      "filePath": "_authenticated/workflows/$Id.tsx",
+      "parent": "/_authenticated"
+    },
+    "/_authenticated/home/": {
+      "filePath": "_authenticated/home/index.tsx",
+      "parent": "/_authenticated"
+    },
+    "/_authenticated/workflows/": {
+      "filePath": "_authenticated/workflows/index.tsx",
       "parent": "/_authenticated"
     }
   }

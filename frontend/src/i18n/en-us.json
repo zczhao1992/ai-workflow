@@ -1,0 +1,16 @@
+{
+    "multiLanguage": "multi-language",
+    "light": "light",
+    "dark": "dark",
+    "system": "System",
+    "toggle-theme": "Toggle theme",
+    "dashboard": "Dashboard",
+    "general": "General",
+    "basictable": "Basictable",
+    "pages": "Pages",
+    "auth": "Auth",
+    "errors": "Errors",
+    "other": "Other",
+    "settings": "Settings",
+    "tasks": "Tasks"
+}
