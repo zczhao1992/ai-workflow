@@ -1,6 +1,7 @@
 import { ReactFlowProvider } from "@xyflow/react";
 import FlowEditor from "./FlowEditor";
 import { FlowValidationContextProvider } from "@/context/FlowValidationContext";
+import TaskMenu from "./TaskMenu";
 
 export default function Editor({ workflowId }: { workflowId: string }) {
   console.log(workflowId);
@@ -16,7 +17,7 @@ export default function Editor({ workflowId }: { workflowId: string }) {
           isPublished={workflow.status === WorkflowStatus.PUBLISHED}
         /> */}
           <section className="flex h-full overflow-auto">
-            {/* <TaskMenu />*/}
+            <TaskMenu />
             <FlowEditor />
           </section>
         </div>

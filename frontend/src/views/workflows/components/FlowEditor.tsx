@@ -16,6 +16,7 @@ import { TaskType } from "@/types/task";
 import { type AppNode } from "@/types/appNode";
 import NodeComponent from "./nodes/NodeComponent";
 import DeletableEdge from "./edges/DeletableEdge";
+import { CreateFlowNode } from "@/lib/workflow/createFlowNode";
 
 import "@xyflow/react/dist/style.css";
 
@@ -38,9 +39,10 @@ export default function FlowEditor() {
 
   useEffect(() => {
     try {
-      const flow = JSON.parse(
-        '{"nodes":[{"id":"983cf5cf-54c8-4096-8510-e58ae1f2b464","type":"FlowScrapeNode","dragHandle":".drag-handle","data":{"type":"LAUNCH_BROWSER","inputs":{"Website Url":"https://www.baidu.com"}},"position":{"x":-350,"y":-50},"measured":{"width":420,"height":219},"selected":false,"dragging":false}],"edges":[],"viewport":{"x":544.5616438356165,"y":185.70000076293945,"zoom":0.6735159817351597}}'
-      );
+      // const flow = JSON.parse(
+      //   '{"nodes":[{"id":"983cf5cf-54c8-4096-8510-e58ae1f2b464","type":"FlowScrapeNode","dragHandle":".drag-handle","data":{"type":"LAUNCH_BROWSER","inputs":{"Website Url":"https://www.baidu.com"}},"position":{"x":-350,"y":-50},"measured":{"width":420,"height":219},"selected":false,"dragging":false}],"edges":[],"viewport":{"x":544.5616438356165,"y":185.70000076293945,"zoom":0.6735159817351597}}'
+      // );
+      let flow = null;
       if (!flow) return;
 
       setNodes(flow.nodes || []);
@@ -68,8 +70,8 @@ export default function FlowEditor() {
 
       const position = screenToFlowPosition({ x: e.clientX, y: e.clientY });
 
-      //   const newNode = CreateFlowNode(taskType as TaskType, position);
-      //   setNodes((nds) => nds.concat(newNode));
+      const newNode = CreateFlowNode(taskType as TaskType, position);
+      setNodes((nds) => nds.concat(newNode));
     },
     [screenToFlowPosition, setNodes]
   );

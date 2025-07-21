@@ -2,7 +2,7 @@ import { memo } from "react";
 import { type NodeProps } from "@xyflow/react";
 import { NodeInput, NodeInputs } from "./NodeInputs";
 import { NodeOutput, NodeOutputs } from "./NodeOutputs";
-// import { TaskRegistry } from "@/lib/workflow/task/registry";
+import { TaskRegistry } from "@/lib/workflow/task/registry";
 import { type AppNodeData } from "@/types/appNode";
 
 import NodeCard from "./NodeCard";
@@ -10,12 +10,12 @@ import NodeHeader from "./NodeHeader";
 
 const NodeComponent = memo((props: NodeProps) => {
   const nodeData = props.data as AppNodeData;
-  // const task = TaskRegistry[nodeData.type];
+  const task = TaskRegistry[nodeData.type];
 
   return (
     <NodeCard nodeId={props.id} isSelected={!!props.selected}>
       <NodeHeader taskType={nodeData.type} nodeId={props.id} />
-      {/* <NodeInputs>
+      <NodeInputs>
         {task.inputs.map((input) => (
           <NodeInput key={input.name} input={input} nodeId={props.id} />
         ))}
@@ -25,7 +25,7 @@ const NodeComponent = memo((props: NodeProps) => {
         {task.outputs.map((output) => (
           <NodeOutput key={output.name} output={output} />
         ))}
-      </NodeOutputs> */}
+      </NodeOutputs>
     </NodeCard>
   );
 });
