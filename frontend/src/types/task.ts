@@ -1,5 +1,6 @@
 export enum TaskType {
   START = "START",
+  LLM = "LLM"
 }
 
 export enum TaskParamType {

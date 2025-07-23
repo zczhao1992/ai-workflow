@@ -7,6 +7,7 @@ import { TaskType } from "@/types/task";
 import { type WorkflowTask } from "@/types/workflow";
 
 import { StartTask } from "./StartTask";
+import { LLMTask } from "./LLMTask";
 
 type Registry = {
   [K in TaskType]: WorkflowTask & { type: K };
@@ -14,4 +15,5 @@ type Registry = {
 
 export const TaskRegistry: Registry = {
   START: StartTask,
+  LLM: LLMTask,
 };

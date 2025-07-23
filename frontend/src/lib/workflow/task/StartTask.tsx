@@ -3,23 +3,21 @@
  *
  */
 
-import { GlobeIcon } from "lucide-react";
+import { Zap } from "lucide-react";
 
 import { TaskParamType, TaskType } from "@/types/task";
 import { type WorkflowTask } from "@/types/workflow";
 
 export const StartTask = {
   type: TaskType.START,
-  label: "新建标签页",
-  icon: (props) => <GlobeIcon className="stroke-pink-400" {...props} />,
+  label: "API入口",
+  icon: (props) => <Zap {...props} />,
   isEntryPoint: true,
-  credits: 0,
   inputs: [
     {
-      label: "新建标签页 URL",
+      label: "模型入口",
       name: "Website Url",
       type: TaskParamType.STRING,
-      helperText: "例如: https://www.baidu.com",
       required: true,
       hideHandle: true,
     },

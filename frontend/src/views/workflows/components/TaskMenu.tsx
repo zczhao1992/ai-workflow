@@ -4,7 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-
+import { GripVerticalIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 import { TaskRegistry } from "@/lib/workflow/task/registry";
@@ -12,7 +12,7 @@ import { TaskType } from "@/types/task";
 
 export default function TaskMenu() {
   return (
-    <aside className="w-[340px] min-w-[340px] max-w-[340px] border-r-2 border-separate h-full p-2 px-4 overflow-auto">
+    <aside className="w-[320px] min-w-[320px] max-w-[320px] border-r-2 border-separate h-full p-2 px-4 overflow-auto">
       <Accordion
         type="multiple"
         className="w-full"
@@ -28,6 +28,7 @@ export default function TaskMenu() {
           <AccordionTrigger className="font-bold">用户行为</AccordionTrigger>
           <AccordionContent className="flex flex-col gap-1">
             <TaskMenuBtn taskType={TaskType.START} />
+            <TaskMenuBtn taskType={TaskType.LLM} />
           </AccordionContent>
         </AccordionItem>
 
@@ -65,14 +66,18 @@ function TaskMenuBtn({ taskType }: { taskType: TaskType }) {
 
   return (
     <Button
-      variant="secondary"
-      className="flex justify-between items-center gap-2 border w-full"
+      variant="outline"
+      className="flex justify-between items-center gap-2 w-full"
       draggable
       onDragStart={(e) => onDragStart(e, taskType)}
     >
-      <div className="flex items-center gap-2">
-        <task.icon size={20} />
-        {task.label}
+      <div className="flex items-center justify-between w-full">
+        <div className="flex items-center gap-2">
+          <task.icon size={20} />
+          {task.label}
+        </div>
+
+        <GripVerticalIcon size={20} />
       </div>
     </Button>
   );
