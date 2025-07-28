@@ -1,6 +1,6 @@
 from typing import Optional, Union
-from fastapi import FastAPI, Query, Path 
-from pydantic import BaseModel, Field 
+from fastapi import FastAPI, Query, Path
+from pydantic import BaseModel, Field
 import uvicorn
 
 app = FastAPI()
