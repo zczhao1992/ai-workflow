@@ -1,11 +1,13 @@
 from typing import Optional, Union
-from workers import Response
 from fastapi import FastAPI, Query, Path
 from pydantic import BaseModel, Field
 import uvicorn
 
-def on_fetch(request):
-    return Response("Hello World!")
+
+# async def on_fetch(request, env):
+#     import asgi
+
+#     return await asgi.fetch(app, request, env)
 
 
 app = FastAPI()
