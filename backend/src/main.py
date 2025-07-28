@@ -1,8 +1,12 @@
 from typing import Optional, Union
-
+from workers import Response
 from fastapi import FastAPI, Query, Path
 from pydantic import BaseModel, Field
 import uvicorn
+
+def on_fetch(request):
+    return Response("Hello World!")
+
 
 app = FastAPI()
 
