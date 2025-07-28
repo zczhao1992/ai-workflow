@@ -1,14 +1,7 @@
 from typing import Optional, Union
-from fastapi import FastAPI, Query, Path
-from pydantic import BaseModel, Field
+from fastapi import FastAPI, Query, Path 
+from pydantic import BaseModel, Field 
 import uvicorn
-
-
-# async def on_fetch(request, env):
-#     import asgi
-
-#     return await asgi.fetch(app, request, env)
-
 
 app = FastAPI()
 
